@@ -1,0 +1,51 @@
+# Build output
+build/
+downloads/
+sources/
+toolchain/
+sysroot/
+rootfs/
+
+# Kernel generated files
+*.o
+*.a
+*.ko
+*.mod
+*.cmd
+
+# Images
+*.iso
+*.img
+*.raw
+*.qcow2
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Package build output
+packages/*/build/
+packages/*/work/
+
+# IDE
+.vscode/
+.idea/
+
+# Environment/secrets
+.env
+.env.*
+*.secret
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+
+# OS/editor files
+.DS_Store
+Thumbs.db
