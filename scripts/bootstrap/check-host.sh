@@ -63,6 +63,7 @@ echo "[Required Tools]"
     file
     gawk
     zstd
+    pkg-config
 )
 
 missing=0
@@ -74,6 +75,10 @@ for tool in "${tools[@]}"; do
         printf "  [MISS] %s\n" "$tool"
         missing=1
     fi
+if ! dpkg-query -W -f='${Status}' libelf-dev 2>/dev/null | grep -q 'install ok installed'; then
+    echo "ERROR: Required package not installed: libelf-dev"
+    exit 1
+fi
 done
 
 echo
