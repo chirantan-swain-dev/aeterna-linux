@@ -30,7 +30,8 @@ rootfs/
 # Package build output
 packages/*/build/
 packages/*/work/
-
+# Generated filesystem
+rootfs/
 # IDE
 .vscode/
 .idea/
