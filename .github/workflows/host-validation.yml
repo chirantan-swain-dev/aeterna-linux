@@ -1,0 +1,38 @@
+name: Aeterna Host Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate Aeterna project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate repository structure
+        run: |
+          test -f README.md
+          test -f VERSION
+          test -f configs/system/aeterna.conf
+          test -f scripts/bootstrap/config.sh
+          test -f scripts/bootstrap/aeterna-info.sh
+
+      - name: Validate shell scripts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+          find scripts -type f -name '*.sh' -print0 |
+            xargs -0 -r shellcheck
+
+      - name: Load Aeterna configuration
+        run: |
+          ./scripts/bootstrap/aeterna-info.sh
